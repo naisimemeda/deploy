@@ -17,6 +17,13 @@ add('copy_dirs', ['vendor']);
 after('deploy:failed', 'deploy:unlock');
 before('deploy:symlink', 'artisan:migrate');
 desc('Upload .env file');
+
+desc('Restart Horizon');
+task('horizon:terminate', function() {
+    run('{{bin/php}} {{release_path}}/artisan horizon:terminate');
+});
+// 在 deploy:symlink 任务之后执行 horizon:terminate 任务
+after('deploy:symlink', 'horizon:terminate');
 task('env:upload', function() {
     // 将本地的 .env 文件上传到代码目录的 .env
     upload('.env', '{{release_path}}/.env');
