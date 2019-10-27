@@ -8,7 +8,7 @@ add('shared_files', []);
 add('shared_dirs', []);
 set('writable_dirs', []);
 
-host('120.27.242.187')
+host('47.94.224.250')
     ->user('root') // 使用 root 账号登录
     ->identityFile('~/.ssh/hairpin.pem') // 指定登录密钥文件路径
     ->become('www-data') // 以 www-data 身份执行命令
